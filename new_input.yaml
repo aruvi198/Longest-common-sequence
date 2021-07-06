@@ -1,0 +1,18 @@
+#Sample pipeline YAML file for inputs
+
+storage:
+    #storage space required for storing pipelne artifacts
+    storage: "4Gi"
+    pvcMountPath: "/mount/"
+
+model:
+    modelScriptPath: "https://raw.githubusercontent.com/Srigandhan/Kubeflow_Imports/main/model.py"
+    #model script path type : [url,local]
+    modelScriptPathType: "url"
+
+data:
+    dataScriptPath: "https://raw.githubusercontent.com/Srigandhan/Kubeflow_Imports/main/dataset.py"
+    #data script path type : [url,local]
+    dataScriptPathType: "url"
+    #data path if dataset is present [url,local,cloud storage]
+    dataPath: "path/to/data"
