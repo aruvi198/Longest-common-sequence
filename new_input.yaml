@@ -16,3 +16,13 @@ data:
     dataScriptPathType: "url"
     #data path if dataset is present [url,local,cloud storage]
     dataPath: "path/to/data"
+
+trainingArgs:
+   #optimizer : [adam,sgd,ftrl,rmsprop]
+   optimizer: "adam"
+   #loss function: [crossentropy,meansquarederror]
+   loss: "crossentropy"
+   #metrics: [accuracy,loss]
+   metrics: "accuracy"
+   #epochs (integer value)
+   epochs: 5
