@@ -1,0 +1,19 @@
+spec:
+  template:
+    spec:
+      containers:
+      - env:
+        - name: VIEWER_TENSORBOARD_POD_TEMPLATE_SPEC_PATH
+          value: "/config/view_spec_template.json"
+        name: ml-pipeline-ui-artifact
+        volumeMounts:
+          - mountPath: /config/view_spec_template.json
+            subPath: view_spec_template.json
+            name: view-template-config
+      volumes:
+        - name: view-template-config
+          configMap:
+            name: ui-view-spec-template-configmap
+            items:
+              - key: view-spec-template.json
+                path: view_spec_template.json
