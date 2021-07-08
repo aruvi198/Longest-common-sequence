@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  view-spec-template.json: |-
+    {
+      "spec": {
+          "containers": [{
+            "volumeMounts": [{
+              "name": "pvc-ed2b3456-6cf2-4d21-823e-fb98100ae299",
+              "mountPath": "/mnt"
+            }]
+          }],
+          "volumes": [{
+            "name": "pvc-ed2b3456-6cf2-4d21-823e-fb98100ae299",
+            "persistentVolumeClaim": {
+              "claimName": "tboard-claim"
+            }
+          }]
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: ui-view-spec-template-configmap
+  namespace: kubeflow-user-example-com
