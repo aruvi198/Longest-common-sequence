@@ -1,16 +1,20 @@
 #Sample pipeline YAML file for inputs
+#please dont change the keys
 
 storage:
-    #storage space required for storing pipelne artifacts
+    #storage space required for storing pipelne artifacts - used by PVC
     storage: "4Gi"
     pvcMountPath: "/mount/"
 
 model:
+    #path of the python file that contains a function named 'model' and returns Keras model when called (raw format of the file from github)
     modelScriptPath: "https://raw.githubusercontent.com/Srigandhan/Kubeflow_Imports/main/model.py"
     #model script path type : [url,local]
     modelScriptPathType: "url"
 
 data:
+    #path of the python file that contains a function named 'download_data' and returns arrays of (train_images,train_labels,test_images,test_labels) 
+    #when called (raw format of the file from github)
     dataScriptPath: "https://raw.githubusercontent.com/Srigandhan/Kubeflow_Imports/main/dataset.py"
     #data script path type : [url,local]
     dataScriptPathType: "url"
@@ -18,11 +22,11 @@ data:
     dataPath: "path/to/data"
 
 trainingArgs:
-   #optimizer : [adam,sgd,ftrl,rmsprop]
+   #optimizer : [adam,sgd,ftrl,rmsprop](currently supported)
    optimizer: "adam"
-   #loss function: [crossentropy,meansquarederror]
+   #loss function: [crossentropy,meansquarederror](currently supported)
    loss: "crossentropy"
-   #metrics: [accuracy,loss]
+   #metrics: [accuracy,loss] (currently supported)
    metrics: "accuracy"
    #epochs (integer value)
    epochs: 5
