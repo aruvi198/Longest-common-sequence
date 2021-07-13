@@ -18,15 +18,15 @@ data:
     dataScriptPath: "https://raw.githubusercontent.com/Srigandhan/Kubeflow_Imports/main/dataset.py"
     #data script path type : [url,local]
     dataScriptPathType: "url"
-    #data path if dataset is present [url,local,cloud storage]
+    #data path for downloading data if dataset folder is present (url type,local file path type) --> can be left if its not required
     dataPath: "path/to/data"
 
 trainingArgs:
-   #optimizer : [adam,sgd,ftrl,rmsprop](currently supported)
+   #Keras optimizer : [adam,sgd,ftrl,rmsprop](currently supported)
    optimizer: "adam"
-   #loss function: [crossentropy,meansquarederror](currently supported)
+   #Keras loss function: [crossentropy,meansquarederror](currently supported)
    loss: "crossentropy"
-   #metrics: [accuracy,loss] (currently supported)
+   #Keras metrics: [accuracy,loss] (currently supported)
    metrics: "accuracy"
    #epochs (integer value)
    epochs: 5
