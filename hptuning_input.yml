@@ -5,12 +5,12 @@ mount_path: '/mount/'
 claim_size: '4Gi'
 
 #Path of the model file
-model_script_path:
+model_script_path: 'https://raw.githubusercontent.com/Srigandhan/Kubeflow_Imports/main/model.py'
 #Path type of model file [url,local]
 model_script_path_type: 'url'
 
 #Path of data download script
-data_script_path: 
+data_script_path: 'https://raw.githubusercontent.com/Srigandhan/Kubeflow_Imports/main/dataset.py'
 #type of data download script [url,local]
 data_script_path_type: 'url'
 
