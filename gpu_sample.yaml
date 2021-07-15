@@ -54,8 +54,8 @@ spec:
                         claimName: hyperparameter-tuning-example-5c4dk-data-volume 
                   containers:
                     - name: tensorflow
-                      image: docker.io/729578/train:latest
-                      #image: tcpazu0026seaacrmlopsdev.azurecr.io/hptraining
+                      #image: docker.io/729578/train:latest
+                      image: tcpazu0026seaacrmlopsdev.azurecr.io/hptraining
                       command:
                         - "python3"
                         - "/pipelines/component/src/train.py"
@@ -86,8 +86,8 @@ spec:
                         claimName: hyperparameter-tuning-example-5c4dk-data-volume 
                   containers:
                     - name: tensorflow
-                      image: docker.io/729578/train:latest
-                      #image: tcpazu0026seaacrmlopsdev.azurecr.io/hptraining
+                      #image: docker.io/729578/train:latest
+                      image: tcpazu0026seaacrmlopsdev.azurecr.io/hptraining
                       command:
                         - "python3"
                         - "/pipelines/component/src/train.py"
