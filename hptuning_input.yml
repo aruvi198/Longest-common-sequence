@@ -1,0 +1,24 @@
+#PVC volume claim
+#workspace volume path to be mounted in PVC space
+mount_path: '/mount/'
+#Storage space required in Gi/Mi
+claim_size: '4Gi'
+
+#Path of the model file
+model_script_path:
+#Path type of model file [url,local]
+model_script_path_type: 'url'
+
+#Path of data download script
+data_script_path: 
+#type of data download script [url,local]
+data_script_path_type: 'url'
+
+#Path of the YAML file where HP tuning is defined
+yaml_path: 'https://raw.githubusercontent.com/aruvi198/Longest-common-sequence/master/gpu_sample.yaml'
+#To delete the experiment or not after completion [True, False]
+delete_after_done: True
+#Minutes time to wait for the experiment to complete
+timeout: 30
+#file to store parameter values
+output_file: 'output.txt'
