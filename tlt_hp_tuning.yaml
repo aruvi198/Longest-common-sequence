@@ -20,7 +20,7 @@ spec:
         min: 15
         max: 80
     - name: batch_size_per_gpu
-      parameterType: categorical
+      parameterType: int
       feasibleSpace:
         list:
           - 4
