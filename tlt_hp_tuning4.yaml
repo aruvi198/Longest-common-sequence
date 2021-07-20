@@ -62,7 +62,7 @@ spec:
                         - "if [ -d  %s/experiment_dir_unpruned ]; then rm -Rf %s/experiment_dir_unpruned; fi &&"
                         - "export http_proxy=%s && export https_proxy=%s && export HTTP_PROXY=%s && export HTTPS_PROXY=%s &&" 
                         - "/usr/local/bin/install_ngc_cli.sh &&"
-                        - "echo %s >> modify.py &&"
+                        - "wget https://raw.githubusercontent.com/aruvi198/Longest-common-sequence/master/modify.py &&"
                         - "python3 modify.py --batch-size-per-gpu=${trialParameters.batchSize} --num-epochs=${trialParameters.numEpochs} --spec-path=%s &&"
                         - "%s train -e %s/specs/%s -r %s/experiment_dir_unpruned -k %s -n %s "
                       resources:
@@ -92,7 +92,7 @@ spec:
                         - "if [ -d  %s/experiment_dir_unpruned ]; then rm -Rf %s/experiment_dir_unpruned; fi &&"
                         - "export http_proxy=%s && export https_proxy=%s && export HTTP_PROXY=%s && export HTTPS_PROXY=%s &&" 
                         - "/usr/local/bin/install_ngc_cli.sh &&"
-                        - "echo %s >> modify.py &&"
+                        - "wget https://raw.githubusercontent.com/aruvi198/Longest-common-sequence/master/modify.py &&"
                         - "python3 modify.py --batch-size-per-gpu=${trialParameters.batchSize} --num-epochs=${trialParameters.numEpochs} --spec-path=%s &&"
                         - "%s train -e %s/specs/%s -r %s/experiment_dir_unpruned -k %s -n %s"
                       resources:
