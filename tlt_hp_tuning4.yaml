@@ -58,6 +58,7 @@ spec:
                       image: nvcr.io/nvidia/tlt-streamanalytics:v3.0-py3
                       command:  
                         - "sh -c"
+                      args:
                         - "if [ -d  %s/experiment_dir_unpruned ]; then rm -Rf %s/experiment_dir_unpruned; fi &&"
                         - "export http_proxy=%s && export https_proxy=%s && export HTTP_PROXY=%s && export HTTPS_PROXY=%s &&" 
                         - "/usr/local/bin/install_ngc_cli.sh &&"
@@ -87,6 +88,7 @@ spec:
                       image: nvcr.io/nvidia/tlt-streamanalytics:v3.0-py3
                       command:
                         - "sh -c"
+                      args:
                         - "if [ -d  %s/experiment_dir_unpruned ]; then rm -Rf %s/experiment_dir_unpruned; fi &&"
                         - "export http_proxy=%s && export https_proxy=%s && export HTTP_PROXY=%s && export HTTPS_PROXY=%s &&" 
                         - "/usr/local/bin/install_ngc_cli.sh &&"
