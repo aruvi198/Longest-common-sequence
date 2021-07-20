@@ -5,9 +5,9 @@ metadata:
   name: katib-tlt
 spec:
   objective:
-    type: maximize
-    goal: 0.99
-    objectiveMetricName: average_precision
+    type: minimize
+    goal: 0.00001
+    objectiveMetricName: Validation cost
   algorithm:
     algorithmName: random
   parallelTrialCount: 3
