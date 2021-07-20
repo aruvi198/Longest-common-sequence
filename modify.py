@@ -10,7 +10,7 @@ def modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu
     home_path,filename = os.path.split(spec_path)
     f = open(spec_path,'r')
     global flag
-    new_path = home_path+"new_spec.txt"
+    new_path = home_path+"/new_spec.txt"
     print("***************************new path : ",new_path,spec_path)
     f2 = open(new_path,'w')
     for i in f.readlines():
