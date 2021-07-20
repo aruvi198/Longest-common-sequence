@@ -17,8 +17,8 @@ spec:
     - name: num_epochs
       parameterType: int
       feasibleSpace:
-        min: 15
-        max: 80
+        min: "15"
+        max: "80"
     - name: batch_size_per_gpu
       parameterType: int
       feasibleSpace:
