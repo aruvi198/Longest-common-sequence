@@ -1,0 +1,103 @@
+apiVersion: "kubeflow.org/v1beta1"
+kind: Experiment
+metadata:
+  namespace: kubeflow-user-example-com
+  name: katib-tlt
+spec:
+  objective:
+    type: maximize
+    goal: 0.99
+    objectiveMetricName: average_precision
+  algorithm:
+    algorithmName: random
+  parallelTrialCount: 3
+  maxTrialCount: 7
+  maxFailedTrialCount: 3
+  parameters:
+    - name: num_epochs
+      parameterType: int
+      feasibleSpace:
+        min: 15
+        max: 80
+    - name: batch_size_per_gpu
+      parameterType: categorical
+      feasibleSpace:
+        list:
+          - 4
+          - 8
+          - 16
+          - 32
+  trialTemplate:
+    primaryContainerName: tensorflow
+    trialParameters:
+      - name: numEpochs
+        description: number of epochs for training
+        reference: num_epochs
+      - name: batchSize
+        description: batch size
+        reference: batch_size_per_gpu
+    trialSpec:
+      apiVersion: "kubeflow.org/v1"
+      kind: TFJob
+      spec:
+        tfReplicaSpecs:
+            Chief:
+              replicas: 1
+              restartPolicy: Never
+              template:
+                metadata:
+                  annotations:
+                    sidecar.istio.io/inject: "false"
+                spec:
+                  volumes:
+                    - name: training
+                      persistentVolumeClaim: 
+                        claimName: pvc-name
+                  containers:
+                    - name: tensorflow
+                      image: nvcr.io/nvidia/tlt-streamanalytics:v3.0-py3
+                      command:  
+                        - "sh -c"
+                        - "if [ -d  %s/experiment_dir_unpruned ]; then rm -Rf %s/experiment_dir_unpruned; fi &&"
+                        - "export http_proxy=%s && export https_proxy=%s && export HTTP_PROXY=%s && export HTTPS_PROXY=%s &&" 
+                        - "/usr/local/bin/install_ngc_cli.sh &&"
+                        - "echo %s >> modify.py &&"
+                        - "python3 modify.py --batch-size-per-gpu=${trialParameters.batchSize} --num-epochs=${trialParameters.numEpochs} --spec-path=%s &&"
+                        - "%s train -e %s/specs/%s -r %s/experiment_dir_unpruned -k %s -n %s "
+                      resources:
+                        limits:
+                          cpu: 1
+                      volumeMounts:
+                      - mountPath: /mount/  
+                        name: training
+            Worker:
+              replicas: 1
+              restartPolicy: Never
+              template:
+                metadata:
+                  annotations:
+                    sidecar.istio.io/inject: "false"
+                spec:
+                  volumes:
+                    - name: training
+                      persistentVolumeClaim: 
+                        claimName: pvc-volume
+                  containers:
+                    - name: tensorflow
+                      image: nvcr.io/nvidia/tlt-streamanalytics:v3.0-py3
+                      command:
+                        - "sh -c"
+                        - "if [ -d  %s/experiment_dir_unpruned ]; then rm -Rf %s/experiment_dir_unpruned; fi &&"
+                        - "export http_proxy=%s && export https_proxy=%s && export HTTP_PROXY=%s && export HTTPS_PROXY=%s &&" 
+                        - "/usr/local/bin/install_ngc_cli.sh &&"
+                        - "echo %s >> modify.py &&"
+                        - "python3 modify.py --batch-size-per-gpu=${trialParameters.batchSize} --num-epochs=${trialParameters.numEpochs} --spec-path=%s &&"
+                        - "%s train -e %s/specs/%s -r %s/experiment_dir_unpruned -k %s -n %s"
+                      resources:
+                        limits:
+                          nvidia.com/gpu: 1
+                      volumeMounts:
+                      - mountPath: /mount/  
+                        name: training
+            
+  
