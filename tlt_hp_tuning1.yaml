@@ -23,10 +23,10 @@ spec:
       parameterType: int
       feasibleSpace:
         list:
-          - 4
-          - 8
-          - 16
-          - 32
+          - "4"
+          - "8"
+          - "16"
+          - "32"
   trialTemplate:
     primaryContainerName: tensorflow
     trialParameters:
