@@ -1,6 +1,6 @@
 import logging
 print("*****************************************************************************************")
-file = open('log.txt','r')
+file = open('/workspace/tlt-experiments/experiment_dir_unpruned/status.json','r')
 print("file : ",file)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -10,11 +10,14 @@ logger.addHandler(file_handler)
 for i in file.readlines():
     print("checking logs .................................................................")
     print(i)
-    if 'loss =' in i:
+    if 'loss' in i:
         print("loss ------------------------------------------------------- ",i)
-        out = i.split(',')[-2]
-        print(out)
-        logger.info(out)
+        out = i.split(',')[0]
+        name = "loss="
+        val = str(out[9:])
+        final = name+val
+        print(final)
+        logger.info(final)
     else:
         print("not found ------------------------------------------------------------------")
         
