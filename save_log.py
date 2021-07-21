@@ -16,7 +16,7 @@ print("file : ",file)
 # file_handler.setLevel(logging.DEBUG)
 # logger.addHandler(file_handler)
 print("checking logs .................................................................")
-new = open("/katib/log.txt","w")
+new = open("log.txt","w")
 for i in file.readlines():
     if 'loss' in i:
         out = i.split(',')[0]
