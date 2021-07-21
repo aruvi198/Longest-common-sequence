@@ -2,10 +2,11 @@ import argparse,os
 parser = argparse.ArgumentParser('Modify')
 parser.add_argument('--num-epochs',default=None,type=int)
 parser.add_argument('--batch-size-per-gpu',default=None,type=int)
+parser.add_argument('--regularizer',default=None,type=str)
 parser.add_argument('--spec-path',default=None,type=str)
 args = parser.parse_args()
 flag = 0
-def modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu,spec_path=args.spec_path):
+def modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu,regularizer=args.regularizer,spec_path=args.spec_path):
     print(num_epochs,batch_size_per_gpu)
     home_path,filename = os.path.split(spec_path)
     f = open(spec_path,'r')
@@ -20,5 +21,10 @@ def modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu
                     i = ' '*i.index('n') + 'num_epochs: ' + str(num_epochs) + '\n'
             elif 'batch_size_per_gpu' in i and batch_size_per_gpu != None:
                     i = ' '*i.index('b') + 'batch_size_per_gpu: ' + str(batch_size_per_gpu) + '\n'
+            elif 'regularizer' in i and regularizer != None:
+                    flag = "regularizer_set"
+        if flag == "regularizer_set":
+            i = ' '*i.index('t') + 'type: ' + str(regularizer) + '\n'
+            flag = 1
         f2.write(i)
 modify(args.num_epochs,args.batch_size_per_gpu,args.spec_path)
