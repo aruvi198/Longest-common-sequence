@@ -23,8 +23,8 @@ for i in file.readlines():
         name = "loss="
         val = str(out.split(":")[-1].strip())
         logging.info('loss={}'.format(val))
-#         final = name+val
-# metricName: ([\\w|-]+), metricValue: ((-?\\d+)(\\.\\d+)?)
+        out = name+val
+        print(out)
         final = "metricName: {}, metricValue: {}".format("loss",val)
         logging.info(final)
         print(final)
