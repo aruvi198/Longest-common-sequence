@@ -7,11 +7,9 @@ logger.setLevel(logging.INFO)
 file_handler = logging.FileHandler('/var/log/katib/metrics.log')
 file_handler.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
+print("checking logs .................................................................")
 for i in file.readlines():
-    print("checking logs .................................................................")
-    print(i)
     if 'loss' in i:
-        print("loss ------------------------------------------------------- ",i)
         out = i.split(',')[0]
         name = "loss="
         val = str(out.split(":")[-1].strip())
@@ -19,7 +17,8 @@ for i in file.readlines():
         print(final)
         logger.info(final)
     else:
-        print("not found ------------------------------------------------------------------")
+#         print("not found ------------------------------------------------------------------")
+        pass
         
         
         
