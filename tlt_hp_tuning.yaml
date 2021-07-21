@@ -1,0 +1,71 @@
+apiVersion: "kubeflow.org/v1beta1"
+kind: Experiment
+metadata:
+  namespace: kubeflow-user-example-com
+  name: katib-tlt-metrics
+spec:
+  objective:
+    type: minimize
+    goal: 0.00001
+    objectiveMetricName: loss
+  algorithm:
+    algorithmName: random
+  parallelTrialCount: 2
+  maxTrialCount: 7
+  maxFailedTrialCount: 3
+  parameters:
+    - name: num_epochs
+      parameterType: int
+      feasibleSpace:
+        min: "15"
+        max: "50"
+    - name: batch_size_per_gpu
+      parameterType: categorical
+      feasibleSpace:
+        list:
+          - "4"
+          - "8"
+          - "12"
+  trialTemplate:
+    primaryContainerName: training
+    trialParameters:
+      - name: numEpochs
+        description: number of epochs for training
+        reference: num_epochs
+      - name: batchSize
+        description: batch size
+        reference: batch_size_per_gpu
+    trialSpec:
+      apiVersion: batch/v1
+      kind: Job
+      spec:
+        template:
+          metadata:
+            annotations: 
+              sidecar.istio.io/inject: "false"
+          spec:
+            volumes:
+              - name: training
+                persistentVolumeClaim: 
+                  claimName: dummy-name
+            containers:
+              - name: training
+                image: nvcr.io/nvidia/tlt-streamanalytics:v3.0-py3
+                command: 
+                  - "echo starting;"
+                  - "if [ -d  %s/experiment_dir_unpruned ]; then rm -Rf -v %s/experiment_dir_unpruned; fi ;"
+                  - "export http_proxy=%s;"
+                  - "export https_proxy=%s;"
+                  - "export HTTP_PROXY=%s;"
+                  - "export HTTPS_PROXY=%s;"
+                  - "/usr/local/bin/install_ngc_cli.sh;"
+                  - "wget %s;"
+                  - "wget %s;"
+                  - "python3 modify1.py --batch-size-per-gpu=${trialParameters.batchSize} --num-epochs=${trialParameters.numEpochs} --spec-path=%s;"
+                  - "%s train -e %s/specs/new_spec.txt -r %s/experiment_dir_unpruned -k %s -n %s;"
+                  - "python3 save_log.py"
+                volumeMounts:
+                - mountPath: /dummy/path
+                  name: training
+            restartPolicy: Never
+    
