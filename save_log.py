@@ -16,6 +16,7 @@ print("file : ",file)
 # file_handler.setLevel(logging.DEBUG)
 # logger.addHandler(file_handler)
 print("checking logs .................................................................")
+new = open("/katib/log.txt","w")
 for i in file.readlines():
     if 'loss' in i:
         out = i.split(',')[0]
@@ -27,6 +28,7 @@ for i in file.readlines():
         final = "metricName: {}, metricValue: {}".format("loss",val)
         logging.info(final)
         print(final)
+        new.write(final+"\n")
         #logger.info(final)
     else:
 #         print("not found ------------------------------------------------------------------")
