@@ -1,7 +1,7 @@
 import logging
 print("*****************************************************************************************")
 file = open('log.txt','r')
-logger = logging.get_logger()
+logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 file_handler = logging.FileHandler('/var/log/katib/metrics.log')
 file_handler.setLevel(logging.DEBUG)
