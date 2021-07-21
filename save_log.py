@@ -9,8 +9,9 @@ file_handler.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 for i in file.readlines():
     print("checking logs .................................................................")
+    print(i)
     if 'loss =' in i:
-        print(i)
+        print("loss ------------------------------------------------------- ",i)
         out = i.split(',')[-2]
         print(out)
         logger.info(out)
