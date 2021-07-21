@@ -14,7 +14,7 @@ for i in file.readlines():
         print("loss ------------------------------------------------------- ",i)
         out = i.split(',')[0]
         name = "loss="
-        val = str(out[9:])
+        val = str(out.split(":")[-1].strip())
         final = name+val
         print(final)
         logger.info(final)
