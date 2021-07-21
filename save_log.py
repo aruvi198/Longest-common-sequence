@@ -3,7 +3,7 @@ print("*************************************************************************
 file = open('log.txt','r')
 logger = logging.get_logger()
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler('logs.log')
+file_handler = logging.FileHandler('/katib/logs.log')
 file_handler.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 for i in file.readlines():
