@@ -29,4 +29,6 @@ def modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu
             i = ' '*i.index('t') + 'type: ' + str(regularizer) + '\n'
             flag = 1
         f2.write(i)
+    f.close()
+    f2.close()
 modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu,regularizer=args.regularizer,spec_path=args.spec_path,new_spec_path=args.new_spec_path)
