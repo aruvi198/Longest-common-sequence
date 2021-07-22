@@ -18,6 +18,9 @@ def modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu
     f2 = open(new_path,'w')
     for i in f.readlines():
         if 'training_config' in i:flag = 1
+        if flag == "regularizer_set":
+            i = ' '*i.index('t') + 'type: ' + str(regularizer) + '\n'
+            flag = 1
         if flag == 1:
             if 'num_epochs' in i and num_epochs != None:
                     i = ' '*i.index('n') + 'num_epochs: ' + str(num_epochs) + '\n'
@@ -25,9 +28,6 @@ def modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu
                     i = ' '*i.index('b') + 'batch_size_per_gpu: ' + str(batch_size_per_gpu) + '\n'
             elif 'regularizer' in i and regularizer != None:
                     flag = "regularizer_set"
-        if flag == "regularizer_set":
-            i = ' '*i.index('t') + 'type: ' + str(regularizer) + '\n'
-            flag = 1
         f2.write(i)
     f.close()
     f2.close()
