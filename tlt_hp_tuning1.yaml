@@ -2,7 +2,7 @@ apiVersion: "kubeflow.org/v1beta1"
 kind: Experiment
 metadata:
   namespace: kubeflow-user-example-com
-  name: katib-tlt-metrics
+  name: katib-tlt-metrics1
 spec:
   objective:
     type: minimize
