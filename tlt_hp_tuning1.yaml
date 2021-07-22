@@ -2,7 +2,7 @@ apiVersion: "kubeflow.org/v1beta1"
 kind: Experiment
 metadata:
   namespace: kubeflow-user-example-com
-  name: katib-tlt-metrics1
+  name: tlt-hp-tuning
 spec:
   objective:
     type: minimize
@@ -10,7 +10,7 @@ spec:
     objectiveMetricName: loss
   algorithm:
     algorithmName: random
-  parallelTrialCount: 2
+  parallelTrialCount: 3
   maxTrialCount: 7
   maxFailedTrialCount: 3
   parameters:
@@ -67,5 +67,5 @@ spec:
                 volumeMounts:
                 - mountPath: /dummy/path
                   name: training
-            restartPolicy: Never
+            restartPolicy: OnFailure
     
