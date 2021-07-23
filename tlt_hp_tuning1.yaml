@@ -11,7 +11,7 @@ spec:
   algorithm:
     algorithmName: random
   parallelTrialCount: 3
-  maxTrialCount: 5
+  maxTrialCount: 3
   maxFailedTrialCount: 3
   parameters:
     - name: num_epochs
