@@ -11,7 +11,8 @@ flag = 0
 def modify(spec_path=args.spec_path,new_spec_path=args.new_spec_path):
     home_path,filename = os.path.split(spec_path)
     path = "/workspace/tlt-experiments/output_tlt.txt"
-    hp = json.load(path)
+    output_file = open(path,"r")
+    hp = json.load(output_file)
     parameters = hp['currentOptimalTrial']['parameterAssignments']
     num_epochs_val,batch_size_per_gpu_val,regularizer = None, None, None
     for i in range(len(parameters)):
