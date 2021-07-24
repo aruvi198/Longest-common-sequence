@@ -10,7 +10,7 @@ spec:
     objectiveMetricName: loss
   algorithm:
     algorithmName: random
-  parallelTrialCount: 3
+  parallelTrialCount: 2
   maxTrialCount: 3
   maxFailedTrialCount: 3
   parameters:
