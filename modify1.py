@@ -34,14 +34,14 @@ def modify(spec_path=args.spec_path,new_spec_path=args.new_spec_path):
     for i in f.readlines():
         if 'training_config' in i:flag = 1
         if flag == "regularizer_set":
-            i = ' '*i.index('t') + 'type: ' + str(regularizer) + '\n'
+            i = ' '*i.index('t') + 'type: ' + str(regularizer_val) + '\n'
             flag = 0
         if flag == 1:
-            if 'num_epochs' in i and num_epochs != None:
-                    i = ' '*i.index('n') + 'num_epochs: ' + str(num_epochs) + '\n'
-            elif 'batch_size_per_gpu' in i and batch_size_per_gpu != None:
-                    i = ' '*i.index('b') + 'batch_size_per_gpu: ' + str(batch_size_per_gpu) + '\n'
-            elif 'regularizer' in i and regularizer != None:
+            if 'num_epochs' in i and num_epochs_val != None:
+                    i = ' '*i.index('n') + 'num_epochs: ' + str(num_epochs_val) + '\n'
+            elif 'batch_size_per_gpu' in i and batch_size_per_gpu_val != None:
+                    i = ' '*i.index('b') + 'batch_size_per_gpu: ' + str(batch_size_per_gpu_val) + '\n'
+            elif 'regularizer' in i and regularizer_val != None:
                     flag = "regularizer_set"
         f2.write(i)
     f.close()
