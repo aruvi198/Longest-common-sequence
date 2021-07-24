@@ -24,7 +24,7 @@ def modify(spec_path=args.spec_path,new_spec_path=args.new_spec_path):
             batch_size_per_gpu_val = val
         elif name == "regularizer":
             regularizer_val = val
-    print(num_epochs,batch_size_per_gpu,regularizer)
+    print(num_epochs_val,batch_size_per_gpu_val,regularizer)
     f = open(spec_path,'r')
     global flag
 #     new_path = home_path+"/new_spec.txt"
