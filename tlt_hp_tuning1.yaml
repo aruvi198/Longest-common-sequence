@@ -77,5 +77,5 @@ spec:
                 volumeMounts:
                 - mountPath: /dummy/path
                   name: training
-            restartPolicy: OnFailure
+            restartPolicy: Never
     
