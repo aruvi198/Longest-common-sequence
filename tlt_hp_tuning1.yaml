@@ -69,9 +69,9 @@ spec:
                   - "export HTTP_PROXY=%s;"
                   - "export HTTPS_PROXY=%s;"
                   - "/usr/local/bin/install_ngc_cli.sh;"
-                  - "wget https://raw.githubusercontent.com/aruvi198/Longest-common-sequence/master/modify1.py;"
+                  - "wget https://raw.githubusercontent.com/aruvi198/Longest-common-sequence/master/modify.py;"
                   - "wget https://raw.githubusercontent.com/aruvi198/Longest-common-sequence/master/save_log.py;"
-                  - "python3 modify1.py --batch-size-per-gpu=${trialParameters.batchSize} --num-epochs=${trialParameters.numEpochs} --regularizer=${trialParameters.regularizer} --spec-path=%s --new-spec-path=%s;"
+                  - "python3 modify.py --batch-size-per-gpu=${trialParameters.batchSize} --num-epochs=${trialParameters.numEpochs} --regularizer=${trialParameters.regularizer} --spec-path=%s --new-spec-path=%s;"
                   - "{ %s train -e %s/specs/new_spec.txt -r %s/experiment_dir_unpruned -k %s -n %s && python3 save_log.py; }"
 #                   - "python3 save_log.py"
                 volumeMounts:
