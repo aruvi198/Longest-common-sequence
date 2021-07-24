@@ -1,8 +1,8 @@
 import argparse,os
 parser = argparse.ArgumentParser('Modify')
-parser.add_argument('--num-epochs',default=None,type=int)
-parser.add_argument('--batch-size-per-gpu',default=None,type=int)
-parser.add_argument('--regularizer',default=None,type=str)
+# parser.add_argument('--num-epochs',default=None,type=int)
+# parser.add_argument('--batch-size-per-gpu',default=None,type=int)
+# parser.add_argument('--regularizer',default=None,type=str)
 parser.add_argument('--spec-path',default=None,type=str)
 parser.add_argument('--new-spec-path',default=None,type=str)
 args = parser.parse_args()
@@ -45,4 +45,5 @@ def modify(spec_path=args.spec_path,new_spec_path=args.new_spec_path):
         f2.write(i)
     f.close()
     f2.close()
-modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu,regularizer=args.regularizer,spec_path=args.spec_path,new_spec_path=args.new_spec_path)
+# modify(num_epochs=args.num_epochs,batch_size_per_gpu=args.batch_size_per_gpu,regularizer=args.regularizer,spec_path=args.spec_path,new_spec_path=args.new_spec_path)
+modify(spec_path=args.spec_path,new_spec_path=args.new_spec_path)
