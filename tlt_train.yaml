@@ -13,38 +13,20 @@ spec:
   parallelTrialCount: 1
   maxTrialCount: 1
   maxFailedTrialCount: 1
-#   parameters:
-#     - name: num_epochs
-#       parameterType: int
-#       feasibleSpace:
-#         min: "15"
-#         max: "50"
-#     - name: batch_size_per_gpu
-#       parameterType: categorical
-#       feasibleSpace:
-#         list:
-#           - "4"
-#           - "8"
-#           - "12"
-#     - name: regularizer
-#       parameterType: categorical
-#       feasibleSpace:
-#         list:
-#           - "L1"
-#           - "L2"
-#           - "NO_REG"
-#   trialTemplate:
-#     primaryContainerName: training
-#     trialParameters:
-#       - name: numEpochs
-#         description: number of epochs for training
-#         reference: num_epochs
-#       - name: batchSize
-#         description: batch size
-#         reference: batch_size_per_gpu
-#       - name: regularizer
-#         description: regularizer to be used
-#         reference: regularizer
+  parameters:
+    - name: num_epochs
+      parameterType: int
+      feasibleSpace:
+        min: "15"
+        max: "50"
+
+  trialTemplate:
+    primaryContainerName: training
+    trialParameters:
+      - name: numEpochs
+        description: number of epochs for training
+        reference: num_epochs
+
     trialSpec:
       apiVersion: batch/v1
       kind: Job
