@@ -2,7 +2,7 @@ apiVersion: "kubeflow.org/v1beta1"
 kind: Experiment
 metadata:
   namespace: kubeflow-user-example-com
-  name: tlt-hp-tuning
+  name: tlt-training
 spec:
   objective:
     type: minimize
