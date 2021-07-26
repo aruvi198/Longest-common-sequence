@@ -10,15 +10,15 @@ spec:
     objectiveMetricName: loss
   algorithm:
     algorithmName: random
-  parallelTrialCount: 3
-  maxTrialCount: 3
-  maxFailedTrialCount: 3
+  parallelTrialCount: 2
+  maxTrialCount: 2
+  maxFailedTrialCount: 2
   parameters:
     - name: num_epochs
       parameterType: int
       feasibleSpace:
-        min: "10"
-        max: "20"
+        min: "5"
+        max: "8"
     - name: batch_size_per_gpu
       parameterType: categorical
       feasibleSpace:
