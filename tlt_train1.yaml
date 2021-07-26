@@ -50,7 +50,7 @@ spec:
                   - "export HTTPS_PROXY=%s;"
                   - "/usr/local/bin/install_ngc_cli.sh;"
                   - "wget https://raw.githubusercontent.com/aruvi198/Longest-common-sequence/master/modify.py;"
-                  - "echo working on..."
+                  - "echo working on ;"
                   - "python3 modify.py --batch-size-per-gpu=%s --num-epochs=%s --regularizer=%s --spec-path=%s --new-spec-path=%s;"
                   - "%s train -e %s/specs/new_spec.txt -r %s/experiment_dir_unpruned -k %s -n %s "
                   - "echo ${trialParameters.numEpochs}"
