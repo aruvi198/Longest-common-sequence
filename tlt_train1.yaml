@@ -54,6 +54,7 @@ spec:
                   - "wget https://raw.githubusercontent.com/aruvi198/Longest-common-sequence/master/modify.py;"
                   - "python3 modify.py --batch-size-per-gpu=%s --num-epochs=%s --regularizer=%s --spec-path=%s --new-spec-path=%s;"
                   - "%s train -e %s/specs/new_spec.txt -r %s/experiment_dir_unpruned -k %s -n %s "
+                  - "echo ${trialParameters.numEpochs}"
                 volumeMounts:
                 - mountPath: /dummy/path
                   name: training
