@@ -19,14 +19,12 @@ spec:
       feasibleSpace:
         min: "15"
         max: "50"
-
   trialTemplate:
     primaryContainerName: training
     trialParameters:
       - name: numEpochs
         description: number of epochs for training
         reference: num_epochs
-
     trialSpec:
       apiVersion: batch/v1
       kind: Job
